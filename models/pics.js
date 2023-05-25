@@ -1,0 +1,41 @@
+const sequelize = require("../config/connection");
+const { Model, DataTypes } = require("sequelize");
+
+class Pics extends Model {
+  
+}
+
+Pics.init(
+  {
+    id:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    post:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    vote:{
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "Pics",
+  },
+);
+
+module.exports = Pics;
